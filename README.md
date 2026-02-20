@@ -37,6 +37,8 @@ Audited the routing device's active DHCP bindings to verify the integrity of the
 ### Inter-VLAN DHCP Request Failures ❌
 During the initial deployment, client devices situated in specific department VLANs (specifically the Guest network on VLAN 30) failed to receive DHCP offers, resulting in those devices being isolated from the network with APIPA addresses. 
 
+<img width="1266" height="1058" alt="Screenshot 2026-02-19 144407" src="https://github.com/user-attachments/assets/14700bcb-4db9-4ba4-8532-c9a6a58a0de3" />
+
 <img width="1370" height="1244" alt="Screenshot 2026-02-19 113254" src="https://github.com/user-attachments/assets/9a3653f3-575e-453b-afdc-d55650c26c5e" />
 
 **🔧 Root Cause & Resolution:** The failure was traced back to an 802.1Q trunking and VLAN mismatch between the interconnected switches. Because the trunk link was not properly configured to allow the necessary VLAN tags to pass between the switches, the DHCP DISCOVER broadcast messages from VLAN 30 were being dropped before they could reach the DHCP pool. 
